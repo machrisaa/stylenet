@@ -282,5 +282,5 @@ if __name__ == "__main__":
     # render("./test_data/cat_h.jpg", "./test_data/cat-water-colour.jpg", height=500)
 
     # with generation
-    render_gen("./test_data/husky_paint.jpg", "./test_data/husky_real.jpg",
-               "./test_data/husky_paint_region.jpg", "./test_data/husky_real_region.jpg", height=500)
+    render_gen("./images/husky_paint.jpg", "./test_data/husky_real.jpg",
+               "./images/husky_paint_region.jpg", "./test_data/husky_real_region.jpg", height=500)
