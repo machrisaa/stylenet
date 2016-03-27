@@ -22,6 +22,31 @@ def render(content_file, style_file,
            height=None, width=None,
            content_ratio=0., style3_ratio=3., style4_ratio=1., gram_ratio=0.001, diff_ratio=0.,
            epochs=300, output_file="./train/output%d.jpg"):
+    """
+    Render the synthesis with single generation.
+    - Best used if style has high similarity with the content
+    - If any ratio is set to 0, the corresponding Tensor will not be generated
+    - Pure Gram Matrix synthesis is best for painting abstract style. (gram_ratio = 1 and all others 0)
+
+    :param content_file:            String file path of content image
+    :param style_file:              String file path of style image
+    :param content_region_file:     String file path of region mapping of content
+    :param style_region_file:       String file path of region mapping of image
+    :param random_init:             True to init the image with random
+    :param load_saved_mapping:      True to use saved mapping file
+    :param load_trained_image:      True to use saved training
+    :param blur_mapping:            True to blur the mapping before calculate the max argument
+    :param height:                  int of height of result image
+    :param width:                   int of width of result image. Leaving None with height will scaled
+                                    according aspect ratio
+    :param content_ratio:           float32 of weight of content cost
+    :param style3_ratio:            float32 of weight of patch cost of conv3 layer
+    :param style4_ratio:            float32 of weight of patch cost of conv4 layer
+    :param gram_ratio:              float32 of weight of gram matrix cost
+    :param diff_ratio:              float32 of weight of local different cost
+    :param epochs:                  int of number of epochs to train
+    :param output_file:             String file name of output file. %d will be replaced running number
+    """
     print "render started:"
 
     # print info:
@@ -224,6 +249,37 @@ def render_gen(content_file, style_file,
                height=None, width=None,
                content_ratio=0, style3_ratio=3., style4_ratio=1., gram_ratio=0.001, diff_ratio=0.,
                gen_epochs=80, max_gen=3, pyramid=True, max_reduction_ratio=.8, final_epochs=200):
+    """
+    Render the image by generation method.
+    - Best used if the style has low similarity with the content.
+    - max_reduction_ratio can be set to lower, e.g. 0.4, to improve synthesis effect, but less content will be
+      preserved
+    - content_ratio, gram_ratio will be set to 0 in final generation becuase of low effectiveness
+    - blur_mapping will be switched off except the last generation to prevent severe content destruction
+
+    :param content_file:            String file path of content image
+    :param style_file:              String file path of style image
+    :param content_region_file:     String file path of region mapping of content
+    :param style_region_file:       String file path of region mapping of image
+    :param random_init:             True to init the image with random
+    :param load_saved_mapping:      True to use saved mapping file
+    :param load_trained_image:      True to use saved training
+    :param blur_mapping:            True to blur the mapping before calculate the max argument. Only applied
+                                    to last generation
+    :param height:                  int of height of result image
+    :param width:                   int of width of result image. Leaving None with height will scaled
+                                    according aspect ratio
+    :param content_ratio:           float32 of weight of content cost, will be 0 for last generation
+    :param style3_ratio:            float32 of weight of patch cost of conv3 layer
+    :param style4_ratio:            float32 of weight of patch cost of conv4 layer
+    :param gram_ratio:              float32 of weight of gram matrix cost, will be 0 for last generation
+    :param diff_ratio:              float32 of weight of local different cost
+    :param gen_epochs:              int of epochs of each generations, except the last generation
+    :param max_gen:                 int of number of generations
+    :param pyramid:                 True to pre-scale the image based on reduction ration
+    :param max_reduction_ratio:     float32 of 0.0 to 1.0 of percentage of first reduction ratio in pyramid
+    :param final_epochs:            int of epoch of training last generation
+    """
     for gen in xrange(max_gen):
         if gen is 0:
             gen_content_file = content_file

@@ -166,8 +166,6 @@ def _create_patch(sess, content_input, style_input, content_regions, style_regio
     if content_regions is not None and style_regions is not None:
         assert content_regions.get_shape().as_list()[:3] == style_regions.get_shape().as_list()[:3]
         map_len = content_input.get_shape().as_list()[3]
-        # mapped_content = tf.concat(3, [content_input] + [content_regions for _ in xrange(map_len)])
-        # mapped_style = tf.concat(3, [style_input] + [style_regions for _ in xrange(map_len)])
         mapped_content = tf.concat(3, [content_input, tf.tile(content_regions, [1, 1, 1, map_len])])
         mapped_style = tf.concat(3, [style_input, tf.tile(style_regions, [1, 1, 1, map_len])])
     else:
