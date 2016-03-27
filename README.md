@@ -5,9 +5,13 @@ Neural Network with Style Synthesis based on 2 major methods [Gram matrix](http:
 <table>
   <tr>
     <td><img src="https://github.com/machrisaa/stylenet/blob/master/images/cat-water-colour.jpg"/></td>
+    <td><img src="https://github.com/machrisaa/stylenet/blob/master/images/cat_h.jpg"/></td>
+    <td><img src="https://github.com/machrisaa/stylenet/blob/master/images/cat-result.jpeg"/></td>
   </tr>
   <tr>
     <td>Content</td>
+    <td>Style</td>
+    <td>Result</td>
   </tr>
 </table>
 
