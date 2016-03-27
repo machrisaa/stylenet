@@ -1,0 +1,6 @@
+deprecated
+test_data
+train
+*.pyc
+tester.py
+stylenet_gram.py
