@@ -44,8 +44,10 @@ Synthesis with region mapping
 ##Modification of Algorithm
 <img src="https://github.com/machrisaa/stylenet/blob/master/images/stylenet_patch_diagram.png"/>
 There are 2 modifications of the algorithm from the original Markov Random Field in the paper. 
-We added the blur filtering in the convariant matrix before calculate the max argument in order to reduce the different of the convariant score in a local neighbouthood. This can make the result image look more natural. (Yellow part in the diagram)
-The second modification is to replace the cost function of the piecwise square difference between all patches and the slices of the image. We replaced the function to a single averaged patch tensor in order greatly improve the training process. (Red part in the diagram)
+
+- We added the blur filtering in the convariant matrix before calculate the max argument in order to reduce the different of the convariant score in a local neighbouthood. This can make the result image look more natural. (Yellow part in the diagram)
+
+- The second modification is to replace the cost function of the piecwise square difference between all patches and the slices of the image. We replaced the function to a single averaged patch tensor in order greatly improve the training process. (Red part in the diagram)
 
 ##Requirement
 - [Tensorflow](https://www.tensorflow.org/versions/r0.7/get_started/index.html)
