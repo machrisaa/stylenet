@@ -19,7 +19,9 @@ Basic synthesis
     <td align='center'>Result</td>
   </tr>
 </table>
+>See the intermediate results in [this video](https://youtu.be/4ssJyLivbBM)
 
+<br/>
 Synthesis with region mapping
 <table>
   <tr>
@@ -42,6 +44,7 @@ Synthesis with region mapping
   </tr>
 </table>
 <br/>
+<br/>
 
 ##Modification of Algorithm
 <img src="https://github.com/machrisaa/stylenet/blob/master/images/stylenet_patch_diagram.png"/>
@@ -51,10 +54,12 @@ There are 2 modifications of the algorithm from the original Markov Random Field
 
 - The second modification is to replace the cost function of the piecwise square difference between all patches and the slices of the image. We replaced the function to a single averaged patch tensor in order greatly improve the training process. (Red part in the diagram)
 <br/>
+<br/>
 
 ##Requirement
 - [Tensorflow](https://www.tensorflow.org/versions/r0.7/get_started/index.html)
 - [Tensorflow-VGG](https://github.com/machrisaa/tensorflow-vgg)
+<br/>
 <br/>
 
 ##Basic Usage
